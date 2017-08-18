@@ -18,8 +18,6 @@
 
 #include <stdlib.h>
 
-extern void *__dso_handle;
-
 typedef struct
 {
   void *val;

@@ -5,6 +5,10 @@
 #endif
 #include <stdlib/stdlib.h>
 
+/* __dso_handle is always defined by either crtbegin.o from GCC or our
+   dso_handle.c.  */
+extern void *__dso_handle __attribute__ ((visibility ("hidden")));
+
 /* Now define the internal interfaces.  */
 #if !defined _ISOMAC
 # include <sys/stat.h>

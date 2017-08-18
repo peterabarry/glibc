@@ -36,15 +36,10 @@
 #include "exit.h"
 
 
-/* This is defined by newer gcc version unique for each module.  */
-extern void *__dso_handle __attribute__ ((__weak__));
-
-
 /* Register FUNC to be executed by `quick_exit'.  */
 int
 attribute_hidden
 at_quick_exit (void (*func) (void))
 {
-  return __cxa_at_quick_exit ((void (*) (void *)) func,
-			      &__dso_handle == NULL ? NULL : __dso_handle);
+  return __cxa_at_quick_exit ((void (*) (void *)) func, __dso_handle);
 }

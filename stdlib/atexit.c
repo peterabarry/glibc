@@ -35,11 +35,6 @@
 #include <stdlib.h>
 #include "exit.h"
 
-
-/* This is defined by newer gcc version unique for each module.  */
-extern void *__dso_handle __attribute__ ((__weak__));
-
-
 /* Register FUNC to be executed by `exit'.  */
 int
 #ifndef atexit
@@ -47,6 +42,5 @@ attribute_hidden
 #endif
 atexit (void (*func) (void))
 {
-  return __cxa_atexit ((void (*) (void *)) func, NULL,
-		       &__dso_handle == NULL ? NULL : __dso_handle);
+  return __cxa_atexit ((void (*) (void *)) func, NULL, __dso_handle);
 }
